@@ -45,8 +45,10 @@ public class FeatureLogin {
 
         ListaDeProdutosPageObject listaDePodutos = telaLogin.fazerLoginValido("gus","123");
         listaDePodutos.buscarElementos();
-        telaLogin = listaDePodutos.deslogar();
-        telaLogin.buscarElementos();
+        Assert.assertTrue(listaDePodutos.estaNaPaginaListaProdutos());
+        listaDePodutos.deslogar();
+//        telaLogin.buscarElementos();
+//        Assert.assertTrue(telaLogin.estaPaginaLogin());
 
 
     }

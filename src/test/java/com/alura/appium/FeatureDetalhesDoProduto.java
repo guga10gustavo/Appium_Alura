@@ -1,19 +1,15 @@
 package com.alura.appium;
 
-import com.alura.appium.PageObjects.CadastroPageObject;
-import com.alura.appium.PageObjects.DetalhesDoProdutoPageObject;
-import com.alura.appium.PageObjects.ListaDeProdutosPageObject;
-import com.alura.appium.PageObjects.LoginPageObject;
+import com.alura.appium.AppiumDiverConfig;
+import com.alura.appium.PageObjects.*;
 import io.appium.java_client.AppiumDriver;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class FeatureListaDeProdutos {
+public class FeatureDetalhesDoProduto {
 
     @Test
-    public void consigo_esolher_um_produto(){
+    public void escolho_o_produto_para_comprar(){
 
         AppiumDriver driver = AppiumDiverConfig.Instance().driver;
 
@@ -30,6 +26,11 @@ public class FeatureListaDeProdutos {
 
         DetalhesDoProdutoPageObject telaDetalhesProduto = listaDePodutos.escolherProduto("Camisa");
         telaDetalhesProduto.buscarElementos();
-        Assert.assertTrue(telaDetalhesProduto.estaPaginaDeDetalhes());
+
+        CompraProdutoPageObject telaCompraProduto = telaDetalhesProduto.irParaCompraDoProduto();
+        telaCompraProduto.buscarElementos();
+        Assert.assertTrue(telaCompraProduto.estaPaginaDeCompra());
+
+
     }
 }

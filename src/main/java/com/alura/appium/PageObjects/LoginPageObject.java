@@ -71,4 +71,8 @@ public class LoginPageObject extends PageObjectBase{
 
         return new ListaDeProdutosPageObject(this.driver);
     }
+
+    public boolean estaPaginaLogin(){
+        return botaoLogin.isDisplayed();
+    }
 }

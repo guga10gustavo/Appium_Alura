@@ -42,6 +42,7 @@ public class FeautureCadastro {
         telaCadastro.buscarElementos();
         telaLogin =telaCadastro.Cadastrar("messi", "123", "123");
         telaLogin.buscarElementos();
+        Assert.assertTrue(telaLogin.estaPaginaLogin());
 
     }
 
@@ -87,6 +88,7 @@ public class FeautureCadastro {
         LoginPageObject telaLogin3 = telaCadastro2.Cadastrar("fran", "123", "123");
 
         telaLogin3.buscarElementos();
+        Assert.assertTrue(telaLogin3.estaPaginaLogin());
     }
 
 }

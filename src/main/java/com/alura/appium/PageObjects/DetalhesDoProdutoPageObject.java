@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DetalhesDoProdutoPageObject extends PageObjectBase{
 
     private MobileElement botaoComprar;
@@ -28,4 +31,14 @@ public class DetalhesDoProdutoPageObject extends PageObjectBase{
         botaoComprar = (MobileElement) driver.findElement(campobotaoComprar);
 
     }
+
+    public boolean estaPaginaDeDetalhes(){
+        return botaoComprar.isDisplayed();
+    }
+
+    public CompraProdutoPageObject irParaCompraDoProduto(){
+        botaoComprar.click();
+        return new CompraProdutoPageObject(this.driver);
+    }
+
 }

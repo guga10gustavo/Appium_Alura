@@ -1,19 +1,14 @@
 package com.alura.appium;
 
-import com.alura.appium.PageObjects.CadastroPageObject;
-import com.alura.appium.PageObjects.DetalhesDoProdutoPageObject;
-import com.alura.appium.PageObjects.ListaDeProdutosPageObject;
-import com.alura.appium.PageObjects.LoginPageObject;
+import com.alura.appium.PageObjects.*;
 import io.appium.java_client.AppiumDriver;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class FeatureListaDeProdutos {
+public class FeatureCompraProduto {
 
     @Test
-    public void consigo_esolher_um_produto(){
+    public void preencher_campos_e_comprar_produto(){
 
         AppiumDriver driver = AppiumDiverConfig.Instance().driver;
 
@@ -30,6 +25,18 @@ public class FeatureListaDeProdutos {
 
         DetalhesDoProdutoPageObject telaDetalhesProduto = listaDePodutos.escolherProduto("Camisa");
         telaDetalhesProduto.buscarElementos();
-        Assert.assertTrue(telaDetalhesProduto.estaPaginaDeDetalhes());
+
+        CompraProdutoPageObject telaCompraProduto = telaDetalhesProduto.irParaCompraDoProduto();
+        telaCompraProduto.buscarElementos();
+        telaCompraProduto.adicionarNumeroDoCartao("123","456","12/34/56");
+
+        ListaDeProdutosPageObject listaDeProdutos2 = telaCompraProduto.confirmarPagamento();
+        listaDeProdutos2.buscarElementos();
+
+        ListaDePagamentosPageObject telaListaPagamento=listaDeProdutos2.exibirListaPagamentos();
+        telaListaPagamento.buscarElementos();
+
+        Assert.assertTrue(telaListaPagamento.confimarPagamentoCompra());
+
     }
 }
